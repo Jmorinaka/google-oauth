@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script type="text/javascript">
+        $("document").ready(function(){
+            $("div").click( someDumbFunction );
+        });
+
+        function someDumbFunction(){
+            $.ajax({
+                url: 'formHandler.js',
+                data: {
+                    number: $("input[name=number]").val()
+                },
+                dataType: 'json',
+                success: function(data){
+                    $("body").append(`<div>Num: ${data.originalNumber} SquareRoot: ${data.squareRoot}</div>`);
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+
+<div>CLICK ME!</div>
+<form action="php/formhandler.php" method="post">
+    <input type="text" name="number" placeholder="give me a number">
+    <!--<button >SEND</button>-->
+</form>
+
+
+</body>
+</html>
